@@ -1,0 +1,80 @@
+<mdb-card-text>
+    <table class="table  table-responsive-md btn-table" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Skill</th>
+                <th>Level (Best = 9, Worst = 0)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let e of getSkill;index as i">
+            <tr>
+                <td>{{getSkill[i]?.name}}</td>
+                <td>{{getSkill[i]?.rating}}</td>
+                <td>
+                    <mdb-icon far icon="edit" class="pointer" routerLink="/skill/{{getSkill[i].id}}">
+                    </mdb-icon>
+                    /
+                    <mdb-icon fas icon="times" class="pointer" (click)="deleteSkill(getSkill[i].id)">
+                    </mdb-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</mdb-card-text>
+<div class="text-center">
+    <button mdbBtn color="blue" outline="true" rounded="true" size="sm" class="my-0 waves-light" type="submit"
+        mdbWavesEffect data-toggle="modal" data-target="#basicExample" (click)="skillframe.show()">Add
+        Skill</button>
+</div>
+
+<!-- skill -->
+<div mdbModal #skillframe="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}" >
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Skill Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="skillframe.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="briefcase" class="prefix grey-text"></mdb-icon>
+                    <input type="text" id="form43" class="form-control" mdbInput mdbValidate [formControl]="name"
+                        [(ngModel)]="skill.name">
+                    <label for="form41">Your Skill</label>
+                    <mdb-error *ngIf="name.invalid && (name.dirty || name.touched)">Input
+                        invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="name.valid && (name.dirty || name.touched)">Input
+                        valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon far icon="building" class="prefix grey-text"></mdb-icon>
+                    <input type="text" id="form42" class="form-control" mdbInput mdbValidate [formControl]="rating"
+                        [(ngModel)]="skill.rating">
+                    <label for="form40">Your Level</label>
+                    <mdb-error *ngIf="rating.invalid && (rating.dirty || rating.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="rating.valid && (rating.dirty || rating.touched)">Input
+                        valid
+                    </mdb-success>
+                </div>
+
+            </div>
+
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="addSkill()"
+                    [disabled]="!validateSkill.valid">Add
+                    <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<mdb-card *ngIf="auth.isLoggedIn()">
+    <mdb-card-header>Write a review?</mdb-card-header>
+    <mdb-card-body>
+        <mdb-card-text>
+            <div class="md-form">
+                <textarea type="text" id="form7" class="md-textarea md-textarea-auto form-control" mdbInput mdbValidate
+                    [formControl]="review" [(ngModel)]="r.review"></textarea>
+                <label for="form7">Your review</label>
+                <mdb-error *ngIf="review.invalid && (review.dirty || review.touched)">
+                    Input invalid
+                </mdb-error>
+                <mdb-success *ngIf="review.valid && (review.dirty || review.touched)">
+                    Input valid
+                </mdb-success>
+            </div>
+        </mdb-card-text>
+        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="addReview()"
+            [disabled]="!validateReview.valid">Write a review.</button>
+    </mdb-card-body>
+</mdb-card>
+
+<mdb-card *ngFor="let rv of getReview; index as i ">
+    <mdb-card-header>{{rv?.fullname}} - {{(rv?.created_at.length>10)? (rv?.created_at |
+        slice:0:10):(rv?.created_at)}}</mdb-card-header>
+    <mdb-card-body>
+        <mdb-card-text>
+            <p style="white-space: pre-wrap">{{rv?.review}}</p>
+        </mdb-card-text>
+    </mdb-card-body>
+</mdb-card>

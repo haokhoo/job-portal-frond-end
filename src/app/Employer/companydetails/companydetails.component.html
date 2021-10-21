@@ -1,0 +1,55 @@
+<mdb-card>
+    <mdb-card-header class="font-weight-bold">Company Information</mdb-card-header>
+    <mdb-card-body>
+        <mdb-card-text *ngIf="getCompany">
+            <table style="width: 100%;">
+                <tr >
+                    <th>Company Name: </th>
+                    <td>{{getCompany?.company_name}}</td>
+                </tr>
+                <tr>
+                    <th>Website Link: </th>
+                    <td>{{getCompany?.website}}</td>
+                </tr>
+                <tr>
+                    <th>Email: </th>
+                    <td>{{getCompany?.email}}</td>
+                </tr>
+                <tr>
+                    <th>Phone No: </th>
+                    <td>{{getCompany?.phone}}</td>
+                </tr>
+                <tr>
+                    <th align="left" valign="top">Address: </th>
+                    <td>{{getCompany?.address1}}<br>
+                        {{getCompany?.address2}}<br>
+                        {{getCompany?.postal}}<br>
+                        {{getCompany?.city}}<br>
+                        {{getCompany?.state}}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="left" valign="top">Overview: </th>
+                    <td style="white-space: pre-wrap">{{getCompany?.overview}}</td>
+                </tr>
+                <tr>
+                    <th align="left" valign="top">Logo: </th>
+                    <td><img src="http://localhost:8000/{{getCompany?.logo}}" class="img-fluid" alt="Responsive image">
+                    </td>
+                </tr>
+
+            </table>
+        </mdb-card-text>
+
+        <div class="text-center">
+            <button *ngIf="!getCompany" mdbBtn color="blue" outline="true" rounded="true" size="sm"
+                class="my-0 waves-light" (click)="toAddPage()">
+                Add Company Info
+            </button>
+
+            <button *ngIf="getCompany" mdbBtn color="blue" outline="true" rounded="true" size="sm"
+                class="text-right my-0 waves-light" (click)="toAddPage()">Update
+                Company Info</button>
+        </div>
+    </mdb-card-body>
+</mdb-card>

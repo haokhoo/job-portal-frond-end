@@ -1,0 +1,18 @@
+<main>
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-md-3 p-1" *ngFor="let c of companies;index as i">
+                <mdb-card routerLink="/company/{{companies[i]?.id}}">
+                    <mdb-card-body>
+                      <mdb-card-title>
+                        <img src="http://localhost:8000/{{companies[i]?.logo}}" class="rounded mx-auto d-block" alt="Responsive image">
+                      </mdb-card-title>
+                      <mdb-card-text>
+                        <h2>{{companies[i]?.company_name}}</h2>
+                      </mdb-card-text>
+                    </mdb-card-body>
+                  </mdb-card>
+            </div>
+          </div>
+        </div>
+</main>

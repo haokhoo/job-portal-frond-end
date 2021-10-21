@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Skill Information</h4>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="briefcase" class="prefix grey-text"></mdb-icon>
+                    <input type="text" id="form43" class="form-control" mdbInput mdbValidate [formControl]="name"
+                        [(ngModel)]="skill.name">
+                    <label for="form41">Your Skill</label>
+                    <mdb-error *ngIf="name.invalid && (name.dirty || name.touched)">Input
+                        invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="name.valid && (name.dirty || name.touched)">Input
+                        valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon far icon="building" class="prefix grey-text"></mdb-icon>
+                    <input type="text" id="form42" class="form-control" mdbInput mdbValidate [formControl]="rating"
+                        [(ngModel)]="skill.rating">
+                    <label for="form40">Your Level</label>
+                    <mdb-error *ngIf="rating.invalid && (rating.dirty || rating.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="rating.valid && (rating.dirty || rating.touched)">Input
+                        valid
+                    </mdb-success>
+                </div>
+
+            </div>
+            <div class="text-center">
+                <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="back()">
+                    Back
+                    <mdb-icon fas icon="arrow-circle-left" class="ml-1"></mdb-icon>
+                </button>
+                <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="updateSkill()"
+                    [disabled]="!validateSkill.valid">Update
+                    <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

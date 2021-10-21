@@ -1,0 +1,110 @@
+<main>
+    <div class="container">
+        <div class="row pt-3">
+            <div class="col-md-12 p-1">
+                <h1>Job Status</h1>
+                <mat-tab-group mat-align-tabs="center">
+                    <mat-tab label="Active">
+                        <table mdbTable bordered="true" class="table table-responsive-md" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th><strong>Activated Jobs</strong></th>
+                                    <th><strong>Status</strong></th>
+                                    <th><strong>Actions</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let e of approveJob;index as i">
+                                <tr>
+                                    <td class="pointer"
+                                        routerLink="/employer/panel/manage/{{approveJob[i]?.id}}">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h3 class="mb-1"><strong>{{approveJob[i]?.title}}</strong></h3>
+                                            <small>{{(approveJob[i]?.updated_at.length>10)? (approveJob[i]?.updated_at |
+                                                slice:0:10):(approveJob[i]?.updated_at)}}</small>
+                                        </div>
+                                        <h5>{{approveJob[i]?.company_name}} - {{approveJob[i]?.state}}</h5>
+                                        <h5>RM {{approveJob[i]?.budget}} - {{approveJob[i]?.position_type}}</h5>
+                                        <p class="mb-1">{{ (approveJob[i]?.desc.length>150)? (approveJob[i]?.desc |
+                                            slice:0:150)+'......':(approveJob[i]?.desc) }}</p>
+                                    </td>
+                                    <td>Active</td>
+                                    <td class="center">
+                                        <mdb-icon far icon="trash-alt" class="pointer"
+                                            (click)="removeEJob(pendingJob[i].id)">
+                                        </mdb-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </mat-tab>
+                    <mat-tab label="Pending">
+                        <table mdbTable bordered="true" class="table table-responsive-md" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th><strong>Pending Jobs</strong></th>
+                                    <th><strong>Status</strong></th>
+                                    <th><strong>Action</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let e of pendingJob;index as i">
+                                <tr>
+                                    <td class="pointer"
+                                        routerLink="/employer/panel/manage/{{pendingJob[i]?.id}}">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h3 class="mb-1"><strong>{{pendingJob[i]?.title}}</strong></h3>
+                                            <small>{{(pendingJob[i]?.updated_at.length>10)? (pendingJob[i]?.updated_at |
+                                                slice:0:10):(pendingJob[i]?.updated_at)}}</small>
+                                        </div>
+                                        <h5>{{pendingJob[i]?.company_name}} - {{pendingJob[i]?.state}}</h5>
+                                        <h5>RM {{pendingJob[i]?.budget}} - {{pendingJob[i]?.position_type}}</h5>
+                                        <p class="mb-1">{{ (pendingJob[i]?.desc.length>150)? (pendingJob[i]?.desc |
+                                            slice:0:150)+'......':(pendingJob[i]?.desc) }}</p>
+                                    </td>
+                                    <td>Pending</td>
+                                    <td class="center">
+                                        <mdb-icon far icon="trash-alt" class="pointer"
+                                            (click)="removeEJob(pendingJob[i].id)">
+                                        </mdb-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </mat-tab>
+                    <mat-tab label="History">
+                        <table mdbTable bordered="true" class="table table-responsive-md" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th><strong>History Jobs</strong></th>
+                                    <th><strong>Status</strong></th>
+                                    <th><strong>Actions</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let e of removeJob;index as i">
+                                <tr>
+                                    <td class="pointer"
+                                        routerLink="/employer/panel/manage/{{removeJob[i]?.id}}">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h3 class="mb-1"><strong>{{removeJob[i]?.title}}</strong></h3>
+                                            <small>{{(removeJob[i]?.updated_at.length>10)? (removeJob[i]?.updated_at |
+                                                slice:0:10):(removeJob[i]?.updated_at)}}</small>
+                                        </div>
+                                        <h5>{{removeJob[i]?.company_name}} - {{removeJob[i]?.state}}</h5>
+                                        <h5>RM {{removeJob[i]?.budget}} - {{removeJob[i]?.position_type}}</h5>
+                                        <p class="mb-1">{{ (removeJob[i]?.desc.length>150)? (removeJob[i]?.desc |
+                                            slice:0:150)+'......':(removeJob[i]?.desc) }}</p>
+                                    </td>
+                                    <td>Expired</td>
+                                    <td class="center">
+                                        <mdb-icon fas icon="redo" class="pointer"
+                                            (click)="recoverEJob(removeJob[i].id)">
+                                        </mdb-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
+    </div>
+</main>

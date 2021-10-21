@@ -1,0 +1,167 @@
+<div class="modal-content">
+    <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Company Information</h4>
+    </div>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" [formGroup]="validateCompany" novalidate>
+        <div class="modal-body mx-3">
+            <div class="md-form mb-5">
+                <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+                <input type="text" id="form34" class="form-control" mdbInput mdbValidate [formControl]="company_name"
+                    [(ngModel)]="company.company_name">
+                <label for="form34">Your Company Name</label>
+                <mdb-error *ngIf="company_name.invalid && (company_name.dirty || company_name.touched)">Input
+                    invalid
+                </mdb-error>
+                <mdb-success *ngIf="company_name.valid && (company_name.dirty || company_name.touched)">Input
+                    valid
+                </mdb-success>
+            </div>
+
+            <div class="md-form mb-5">
+                <mdb-icon fas icon="link" class="prefix grey-text"></mdb-icon>
+                <input type="text" id="form34" class="form-control" mdbInput mdbValidate [formControl]="website"
+                    [(ngModel)]="company.website">
+                <label for="form34">Your Website Link</label>
+                <mdb-error *ngIf="website.invalid && (website.dirty || website.touched)">Input
+                    invalid
+                </mdb-error>
+                <mdb-success *ngIf="website.valid && (website.dirty || website.touched)">Input
+                    valid
+                </mdb-success>
+            </div>
+
+            <div class="md-form mb-5">
+                <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+                <input type="email" id="form29" class="form-control" mdbInput mdbValidate [formControl]="email"
+                    [(ngModel)]="company.email">
+                <label for="form29">Your Email</label>
+                <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                    Input invalid
+                </mdb-error>
+                <mdb-success *ngIf="email.valid && (email.dirty || email.touched)">Input
+                    valid
+                </mdb-success>
+            </div>
+
+            <div class="md-form mb-5">
+                <mdb-icon fas icon="phone" class="prefix grey-text"></mdb-icon>
+                <input type="text" id="form32" class="form-control" mdbInput mdbValidate [formControl]="phone"
+                    [(ngModel)]="company.phone">
+                <label for="form32">Your Phone No</label>
+                <mdb-error *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                    Input invalid
+                </mdb-error>
+                <mdb-success *ngIf="phone.valid && (phone.dirty || phone.touched)">
+                    Input valid
+                </mdb-success>
+            </div>
+
+            <div class="md-form mb-5">
+                <mdb-icon fas icon="location-arrow" class="prefix grey-text"></mdb-icon>
+                <input type="text" id="form4" class="form-control" mdbInput mdbValidate [formControl]="address1"
+                    [(ngModel)]="company.address1">
+                <label for="form4">Your Address 1</label>
+                <mdb-error *ngIf="address1.invalid && (address1.dirty || address1.touched)">
+                    Input invalid
+                </mdb-error>
+                <mdb-success *ngIf="address1.valid && (address1.dirty || address1.touched)">
+                    Input valid
+                </mdb-success>
+            </div>
+
+            <div class="md-form mb-5">
+                <mdb-icon fas icon="location-arrow" class="prefix grey-text"></mdb-icon>
+                <input type="text" id="form5" class="form-control" mdbInput mdbValidate [formControl]="address2"
+                    [(ngModel)]="company.address2">
+                <label for="form5">Your Address 2</label>
+                <mdb-error *ngIf="address2.invalid && (address2.dirty || address2.touched)">
+                    Input invalid
+                </mdb-error>
+                <mdb-success *ngIf="address2.valid && (address2.dirty || address2.touched)">
+                    Input valid
+                </mdb-success>
+            </div>
+
+            <div class="md-form mb-5">
+                <mdb-icon fas icon="location-arrow" class="prefix grey-text"></mdb-icon>
+                <input type="text" id="form6" class="form-control" mdbInput mdbValidate [formControl]="city"
+                    [(ngModel)]="company.city">
+                <label for="form6">Your City</label>
+                <mdb-error *ngIf="city.invalid && (city.dirty || city.touched)">
+                    Input invalid
+                </mdb-error>
+                <mdb-success *ngIf="city.valid && (city.dirty || city.touched)">
+                    Input valid
+                </mdb-success>
+            </div>
+
+            <div class="md-form mb-5">
+                <mdb-icon fas icon="location-arrow" class="prefix grey-text"></mdb-icon>
+                <input type="text" id="form7" class="form-control" mdbInput mdbValidate [formControl]="state"
+                    [(ngModel)]="company.state">
+                <label for="form7">Your State</label>
+                <mdb-error *ngIf="state.invalid && (state.dirty || state.touched)">
+                    Input invalid
+                </mdb-error>
+                <mdb-success *ngIf="state.valid && (state.dirty || state.touched)">
+                    Input valid
+                </mdb-success>
+            </div>
+
+            <div class="md-form mb-5">
+                <mdb-icon fas icon="location-arrow" class="prefix grey-text"></mdb-icon>
+                <input type="text" id="form8" class="form-control" mdbInput mdbValidate [formControl]="postal"
+                    [(ngModel)]="company.postal">
+                <label for="form8">Your Postal</label>
+                <mdb-error *ngIf="postal.invalid && (postal.dirty || postal.touched)">
+                    Input invalid
+                </mdb-error>
+                <mdb-success *ngIf="postal.valid && (postal.dirty || postal.touched)">
+                    Input valid
+                </mdb-success>
+            </div>
+
+            <div class="md-form">
+                <mdb-icon fas icon="pencil-alt" class="prefix grey-text"></mdb-icon>
+                <textarea type="text" id="form11" class="md-textarea form-control" rows="1" mdbInput mdbValidate
+                    [formControl]="overview" [(ngModel)]="company.overview"></textarea>
+                <label for="form11">Your Overview</label>
+                <mdb-error *ngIf="overview.invalid && (overview.dirty || overview.touched)">
+                    Input invalid
+                </mdb-error>
+                <mdb-success *ngIf="overview.valid && (overview.dirty || overview.touched)">
+                    Input valid
+                </mdb-success>
+            </div>
+
+            <div class="md-form">
+                <mdb-icon far icon="image" class="prefix grey-text"></mdb-icon>
+                <input type="file" id="form51" class="form-control" mdbInput mdbValidate name="logo"
+                    [formControl]="logo" accept="image/x-png,image/jpeg,image/jpg" [(ngModel)]="company.logo"
+                    #fileupload (change)="fileEvent($event);">
+                <mdb-error *ngIf="logo.invalid && (logo.dirty || logo.touched)">
+                    Image invalid
+                </mdb-error>
+                <mdb-success *ngIf="logo.valid && (logo.dirty || logo.touched)">
+                    Image valid
+                </mdb-success>
+            </div>
+
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="back()">
+                Cancel
+                <mdb-icon fas icon="arrow-circle-left" class="ml-1"></mdb-icon>
+            </button>
+            <button *ngIf="!getCompany" mdbBtn color="unique" class="waves-light" mdbWavesEffect type="submit"
+                [disabled]="!validateCompany.valid">Add
+                <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+            </button>
+
+            <button *ngIf="getCompany" mdbBtn color="unique" class="waves-light" mdbWavesEffect
+                [disabled]="!validateCompany.valid">Update
+                <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+            </button>
+        </div>
+    </form>
+</div>

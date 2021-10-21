@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Experience Information</h4>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="briefcase" class="prefix grey-text"></mdb-icon>
+                    <input type="text" id="form41" class="form-control" mdbInput mdbValidate [formControl]="job_title"
+                        [(ngModel)]="experience.job_title">
+                    <label for="form41">Your Job Title</label>
+                    <mdb-error *ngIf="job_title.invalid && (job_title.dirty || job_title.touched)">Input
+                        invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="job_title.valid && (job_title.dirty || job_title.touched)">Input
+                        valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon far icon="building" class="prefix grey-text"></mdb-icon>
+                    <input type="text" id="form40" class="form-control" mdbInput mdbValidate [formControl]="employer"
+                        [(ngModel)]="experience.employer">
+                    <label for="form40">Your Company</label>
+                    <mdb-error *ngIf="employer.invalid && (employer.dirty || employer.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="employer.valid && (employer.dirty || employer.touched)">Input
+                        valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon far icon="calendar-check" class="prefix grey-text"></mdb-icon>
+                    <input type="date" id="form4" class="form-control" mdbInput mdbValidate [formControl]="start_date"
+                        [(ngModel)]="experience.start_date">
+                    <label for="form4">Your Start Date</label>
+                    <mdb-error *ngIf="start_date.invalid && (start_date.dirty || start_date.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="start_date.valid && (start_date.dirty || start_date.touched)">
+                        Input valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="calendar-check" class="prefix grey-text"></mdb-icon>
+                    <input type="date" id="form11" class="form-control" mdbInput mdbValidate [formControl]="end_date"
+                        [(ngModel)]="experience.end_date">
+                    <label for="form11">Your End Date</label>
+                    <mdb-error *ngIf="end_date.invalid && (end_date.dirty || end_date.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="end_date.valid && (end_date.dirty || end_date.touched)">
+                        Input valid
+                    </mdb-success>
+                </div>
+            </div>
+            <div class="text-center">
+                <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="back()">
+                    Back
+                    <mdb-icon fas icon="arrow-circle-left" class="ml-1"></mdb-icon>
+                </button>
+                <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="updateExperience()"
+                    [disabled]="!validateExperience.valid">Update
+                    <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

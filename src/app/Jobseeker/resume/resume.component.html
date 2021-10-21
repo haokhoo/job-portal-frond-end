@@ -1,0 +1,25 @@
+<!-- <mdb-card-text *ngIf="getR">
+    
+    <img src="http://localhost:8000/{{this.getR?.resume}}" class="img-fluid" alt="Responsive image">
+</mdb-card-text> -->
+
+<a href="http://localhost:8000/{{this.getR?.resume}}" target="_blank" *ngIf="getR">
+    <mdb-card-img src="http://localhost:8000/{{this.getR?.resume}}"
+        alt="Card image cap">
+    </mdb-card-img>
+</a>
+
+<div class="text-center">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" [formGroup]="validateResume" novalidate>
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Please upload your resume</label>
+            <input type="file" [formControl]="file" name="file"
+                accept="image/x-png,image/jpeg,image/jpg" class="form-control-file" id="exampleFormControlFile1"
+                #fileupload (change)="fileEvent($event);">
+        </div>
+
+        <button mdbBtn color="blue" outline="true" rounded="true" size="sm" class="my-0 waves-light" type="submit"
+            mdbWavesEffect data-toggle="modal" data-target="#basicExample"
+            [disabled]="!validateResume.valid">Upload</button>
+    </form>
+</div>

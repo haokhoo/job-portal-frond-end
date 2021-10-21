@@ -1,0 +1,39 @@
+<main>
+    <div class="container">
+        <div class="row pt-2">
+            <div class="col-md-2" *ngFor="let a of applicants;index as i">
+                <mdb-card>
+                    <mdb-card-body>
+                        <mdb-card-title>
+                            <h3>Applicant {{i+1}}</h3>
+                        </mdb-card-title>
+                        <a href="http://localhost:8000/{{applicants[i]?.resume}}" target="_blank">
+                            <mdb-card-img src="http://localhost:8000/{{applicants[i]?.resume}}"
+                                alt="Card image cap">
+                            </mdb-card-img>
+                        </a>
+                    </mdb-card-body>
+                </mdb-card>
+            </div>
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-md-12">
+                <h1>Job Details - Rejected</h1>
+                <div class="list-group list-group-item flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h3 class="mb-1"><strong>{{this.eJob.title}} - {{this.eJob.category}}</strong></h3>
+                        <small>{{(this.eJob.updated_at.length>10)? (this.eJob.updated_at |
+                            slice:0:10):(this.eJob.updated_at)}}</small>
+                    </div>
+                    <h5>{{this.eJob.company_name}} - {{this.eJob.state}}</h5>
+                    <h5>RM {{this.eJob.budget}} - {{this.eJob.position_type}}</h5>
+                    <p class="mb-1">{{this.eJob.desc}}</p>
+                    <button type="button" mdbBtn color="primary" mdbWavesEffect size="sm" hidden></button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" mdbWavesEffect
+                        (click)="back()">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

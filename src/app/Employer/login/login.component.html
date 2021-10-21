@@ -1,0 +1,120 @@
+<form class="form-inline">
+  <button mdbBtn color="light" outline="true" rounded="true" size="sm" class="align-middle waves-light" mdbWavesEffect
+    type="button" data-toggle="modal" data-target="#basicExample" (click)="loginFrame.show()">For Employer</button>
+</form>
+
+<!-- Login -->
+<div mdbModal #loginFrame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign in with Employer</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="loginFrame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+          <input type="email" id="defaultForm-email1" [formControl]="loginFormModalEmail" class="form-control" mdbInput
+            mdbValidate [(ngModel)]="logindetails.email">
+          <label for="defaultForm-email1">Your email</label>
+          <mdb-error *ngIf="loginFormModalEmail.invalid && (loginFormModalEmail.dirty || loginFormModalEmail.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="loginFormModalEmail.valid && (loginFormModalEmail.dirty || loginFormModalEmail.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-4">
+          <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+          <input type="password" id="defaultForm-pass1" [formControl]="loginFormModalPassword" class="form-control"
+            mdbInput mdbValidate [(ngModel)]="logindetails.password">
+          <label for="defaultForm-pass1">Your password</label>
+          <mdb-error
+            *ngIf="loginFormModalPassword.invalid && (loginFormModalPassword.dirty || loginFormModalPassword.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="loginFormModalPassword.valid && (loginFormModalPassword.dirty || loginFormModalPassword.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="login()"
+          [disabled]="!validatingFormLogin.valid">Login</button>
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="registerFrame.show()"
+          (click)="loginFrame.hide()">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Register -->
+<div mdbModal #registerFrame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign up with Employer</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="registerFrame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+          <input type="text" id="orangeForm-name1" class="form-control" [formControl]="signupFormModalName" mdbInput
+            mdbValidate [(ngModel)]="resigterdetails.name">
+          <label for="orangeForm-name1">Your name</label>
+          <mdb-error *ngIf="signupFormModalName.invalid && (signupFormModalName.dirty || signupFormModalName.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="signupFormModalName.valid && (signupFormModalName.dirty || signupFormModalName.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+          <input type="email" id="orangeForm-email1" class="form-control" [formControl]="signupFormModalEmail" mdbInput
+            mdbValidate [(ngModel)]="resigterdetails.email">
+          <label for="orangeForm-email1">Your email</label>
+          <mdb-error
+            *ngIf="signupFormModalEmail.invalid && (signupFormModalEmail.dirty || signupFormModalEmail.touched)">Input
+            invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="signupFormModalEmail.valid && (signupFormModalEmail.dirty || signupFormModalEmail.touched)">Input
+            valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-4">
+          <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+          <input type="password" id="orangeForm-pass1" class="form-control" [formControl]="signupFormModalPassword"
+            mdbInput mdbValidate [(ngModel)]="resigterdetails.password">
+          <label for="orangeForm-pass1">Your password</label>
+          <mdb-error
+            *ngIf="signupFormModalPassword.invalid && (signupFormModalPassword.dirty || signupFormModalPassword.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="signupFormModalPassword.valid && (signupFormModalPassword.dirty || signupFormModalPassword.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="deep-orange" class="waves-light" mdbWavesEffect (click)="register()"
+          [disabled]="!validatingFormRegister.valid">Sign up</button>
+        <button mdbBtn color="deep-orange" class="waves-light" mdbWavesEffect (click)="loginFrame.show()"
+          (click)="registerFrame.hide()">Sign In</button>
+      </div>
+    </div>
+  </div>
+</div>

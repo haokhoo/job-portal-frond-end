@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Education Information</h4>
+
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="school" class="prefix grey-text"></mdb-icon>
+                    <input type="text" class="form-control" mdbInput mdbValidate [formControl]="school"
+                        [(ngModel)]="education.school">
+                    <label for="form37">Your School</label>
+                    <mdb-error *ngIf="school.invalid && (school.dirty || school.touched)">Input
+                        invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="school.valid && (school.dirty || school.touched)">Input
+                        valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="graduation-cap" class="prefix grey-text"></mdb-icon>
+                    <input type="text" class="form-control" mdbInput mdbValidate [formControl]="course"
+                        [(ngModel)]="education.course">
+                    <label for="form28">Your Course</label>
+                    <mdb-error *ngIf="course.invalid && (course.dirty || course.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="course.valid && (course.dirty || course.touched)">Input
+                        valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="poll-h" class="prefix grey-text"></mdb-icon>
+                    <input type="text" class="form-control" mdbInput mdbValidate [formControl]="result"
+                        [(ngModel)]="education.result">
+                    <label for="form33">Your Result</label>
+                    <mdb-error *ngIf="result.invalid && (result.dirty || result.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="result.valid && (result.dirty || result.touched)">
+                        Input valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon far icon="calendar-check" class="prefix grey-text"></mdb-icon>
+                    <input type="date" class="form-control" mdbInput mdbValidate [formControl]="start_date"
+                        [(ngModel)]="education.start_date">
+                    <label for="form4">Your Start Date</label>
+                    <mdb-error *ngIf="start_date.invalid && (start_date.dirty || start_date.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="start_date.valid && (start_date.dirty || start_date.touched)">
+                        Input valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="calendar-check" class="prefix grey-text"></mdb-icon>
+                    <input type="date" class="form-control" mdbInput mdbValidate [formControl]="end_date"
+                        [(ngModel)]="education.end_date">
+                    <label for="form11">Your End Date</label>
+                    <mdb-error *ngIf="end_date.invalid && (end_date.dirty || end_date.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="end_date.valid && (end_date.dirty || end_date.touched)">
+                        Input valid
+                    </mdb-success>
+                </div>
+                <div class="text-center">
+                    <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="back()">
+                        Back
+                        <mdb-icon fas icon="arrow-circle-left" class="ml-1"></mdb-icon>
+                    </button>
+                    <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="updateEducation()"
+                        [disabled]="!validateEducation.valid">Update
+                        <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>

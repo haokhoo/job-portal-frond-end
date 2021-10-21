@@ -1,0 +1,9 @@
+<mdb-card *ngFor="let rv of getQuestion; index as i ">
+    <mdb-card-header>{{rv?.fullname}} - {{(rv?.created_at.length>10)? (rv?.created_at |
+        slice:0:10):(rv?.created_at)}}</mdb-card-header>
+    <mdb-card-body>
+        <mdb-card-text class="pointer" routerLink="/employer/panel/qna-job/{{getQuestion[i].id}}">
+            <p style="white-space: pre-wrap">{{rv?.question}}</p>
+        </mdb-card-text>
+    </mdb-card-body>
+</mdb-card>

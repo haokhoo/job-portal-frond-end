@@ -1,0 +1,110 @@
+<mdb-card-text>
+    <table class="table  table-responsive-md btn-table" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Company</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let e of getExperience;index as i">
+            <tr>
+                <td>{{getExperience[i]?.job_title}}</td>
+                <td>{{getExperience[i]?.employer}}</td>
+                <td>{{getExperience[i]?.start_date}}</td>
+                <td>{{getExperience[i]?.end_date}}</td>
+                <td>
+                    <mdb-icon far icon="edit" class="pointer" routerLink="/experience/{{getExperience[i].id}}">
+                    </mdb-icon>
+                    /
+                    <mdb-icon fas icon="times" class="pointer" (click)="deleteExperience(getExperience[i].id)">
+                    </mdb-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</mdb-card-text>
+<div class="text-center">
+    <button mdbBtn color="blue" outline="true" rounded="true" size="sm" class="my-0 waves-light" type="submit"
+    mdbWavesEffect data-toggle="modal" data-target="#basicExample" (click)="experienceframe.show()">Add
+    Experience</button>
+</div>
+
+<!-- experience -->
+<div mdbModal #experienceframe="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}" >
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Experience Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="experienceframe.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="briefcase" class="prefix grey-text"></mdb-icon>
+                    <input type="text" id="form41" class="form-control" mdbInput mdbValidate [formControl]="job_title"
+                        [(ngModel)]="experience.job_title">
+                    <label for="form41">Your Job Title</label>
+                    <mdb-error *ngIf="job_title.invalid && (job_title.dirty || job_title.touched)">Input
+                        invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="job_title.valid && (job_title.dirty || job_title.touched)">Input
+                        valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon far icon="building" class="prefix grey-text"></mdb-icon>
+                    <input type="text" id="form40" class="form-control" mdbInput mdbValidate [formControl]="employer"
+                        [(ngModel)]="experience.employer">
+                    <label for="form40">Your Company</label>
+                    <mdb-error *ngIf="employer.invalid && (employer.dirty || employer.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="employer.valid && (employer.dirty || employer.touched)">Input
+                        valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon far icon="calendar-check" class="prefix grey-text"></mdb-icon>
+                    <input type="date" id="form4" class="form-control" mdbInput mdbValidate [formControl]="start_date"
+                        [(ngModel)]="experience.start_date">
+                    <label for="form4">Your Start Date</label>
+                    <mdb-error *ngIf="start_date.invalid && (start_date.dirty || start_date.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="start_date.valid && (start_date.dirty || start_date.touched)">
+                        Input valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="calendar-check" class="prefix grey-text"></mdb-icon>
+                    <input type="date" id="form11" class="form-control" mdbInput mdbValidate [formControl]="end_date"
+                        [(ngModel)]="experience.end_date">
+                    <label for="form11">Your End Date</label>
+                    <mdb-error *ngIf="end_date.invalid && (end_date.dirty || end_date.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="end_date.valid && (end_date.dirty || end_date.touched)">
+                        Input valid
+                    </mdb-success>
+                </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="addExperience()"
+                    [disabled]="!validateExperience.valid">Add
+                    <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

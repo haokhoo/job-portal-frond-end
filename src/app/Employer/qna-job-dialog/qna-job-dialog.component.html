@@ -1,0 +1,38 @@
+<div class="modal-header text-center">
+    <h4 class="modal-title w-100 font-weight-bold">Q&A</h4>
+</div>
+
+<mdb-card>
+
+    <mdb-card-body>
+        <mdb-card-text>
+            {{this.fullname}} - {{this.created_at | slice:0:10}}
+            <p style="white-space: pre-wrap">{{this.getQuestion.question}}</p>
+        </mdb-card-text>
+    </mdb-card-body>
+
+    <div class="modal-body mx-3">
+        <div class="md-form">
+            <mdb-icon far icon="comment-alt" class="prefix grey-text"></mdb-icon>
+            <textarea type="text" id="form11" class="md-textarea form-control" rows="1" mdbInput mdbValidate
+                [formControl]="answer" [(ngModel)]="a.answer"></textarea>
+            <label for="form11">Your Answer</label>
+            <mdb-error *ngIf="answer.invalid && (answer.dirty || answer.touched)">
+                Input invalid
+            </mdb-error>
+            <mdb-success *ngIf="answer.valid && (answer.dirty || answer.touched)">
+                Input valid
+            </mdb-success>
+        </div>
+
+    </div>
+    <div class="text-center">
+        <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="back()">Back
+            <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+        </button>
+        <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="addAnswer()"
+            [disabled]="!validateAnswer.valid">Submit
+            <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+        </button>
+    </div>
+</mdb-card>

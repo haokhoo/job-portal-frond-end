@@ -1,0 +1,76 @@
+<div class="modal-header text-center">
+    <h4 class="modal-title w-100 font-weight-bold">Job Information</h4>
+</div>
+<div class="modal-body mx-3">
+    <div class="md-form mb-5">
+        <mdb-icon fas icon="briefcase" class="prefix grey-text"></mdb-icon>
+        <input type="text" id="form43" class="form-control" mdbInput mdbValidate [formControl]="title"
+            [(ngModel)]="eJob.title">
+        <label for="form41">Your Job Title</label>
+        <mdb-error *ngIf="title.invalid && (title.dirty || title.touched)">Input
+            invalid
+        </mdb-error>
+        <mdb-success *ngIf="title.valid && (title.dirty || title.touched)">Input
+            valid
+        </mdb-success>
+    </div>
+
+    <div class="md-form mb-5">
+        <mdb-icon fas icon="book-open" class="prefix grey-text"></mdb-icon>
+        <input type="text" id="form42" class="form-control" mdbInput mdbValidate [formControl]="category"
+            [(ngModel)]="eJob.category">
+        <label for="form40">Your Job Category</label>
+        <mdb-error *ngIf="category.invalid && (category.dirty || category.touched)">
+            Input invalid
+        </mdb-error>
+        <mdb-success *ngIf="category.valid && (category.dirty || category.touched)">Input
+            valid
+        </mdb-success>
+    </div>
+
+    <div class="md-form mb-5">
+        <mdb-icon fas icon="check" class="prefix grey-text"></mdb-icon>
+        <input type="text" id="form7" class="form-control" mdbInput mdbValidate [formControl]="position_type"
+            [(ngModel)]="eJob.position_type">
+        <label for="form7">Your Job Type</label>
+        <mdb-error *ngIf="position_type.invalid && (position_type.dirty || position_type.touched)">
+            Input invalid
+        </mdb-error>
+        <mdb-success *ngIf="position_type.valid && (position_type.dirty || position_type.touched)">
+            Input valid
+        </mdb-success>
+    </div>
+
+    <div class="md-form mb-5">
+        <mdb-icon fas icon="dollar-sign" class="prefix grey-text"></mdb-icon>
+        <input type="text" id="form8" class="form-control" mdbInput mdbValidate [formControl]="budget"
+            [(ngModel)]="eJob.budget">
+        <label for="form8">Your Job Salary</label>
+        <mdb-error *ngIf="budget.invalid && (budget.dirty || budget.touched)">
+            Input invalid
+        </mdb-error>
+        <mdb-success *ngIf="budget.valid && (budget.dirty || budget.touched)">
+            Input valid
+        </mdb-success>
+    </div>
+
+    <div class="md-form">
+        <mdb-icon far icon="comment-alt" class="prefix grey-text"></mdb-icon>
+        <textarea type="text" id="form11" class="md-textarea form-control" rows="1" mdbInput mdbValidate
+            [formControl]="desc" [(ngModel)]="eJob.desc"></textarea>
+        <label for="form11">Your Job Desciption</label>
+        <mdb-error *ngIf="desc.invalid && (desc.dirty || desc.touched)">
+            Input invalid
+        </mdb-error>
+        <mdb-success *ngIf="desc.valid && (desc.dirty || desc.touched)">
+            Input valid
+        </mdb-success>
+    </div>
+
+</div>
+<div class="text-center">
+    <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="addJob()" [disabled]="!validateJob.valid"
+        >Post
+        <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+    </button>
+</div>
