@@ -10,20 +10,11 @@
         <li class="nav-item waves-light" mdbWavesEffect>
           <a class="nav-link" routerLink="/company">All Companies</a>
         </li>
-        <li class="nav-item waves-light" mdbWavesEffect>
-          <a class="nav-link">Post A Job?</a>
-        </li>
       </ul>
+
+      
   
-      <form class="form-inline waves-light waves-light ml-auto" mdbWavesEffect>
-        <div class="md-form my-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Job title, location" aria-label="Search">
-          <button mdbBtn color="light" outline="true" rounded="true" size="sm" class="my-0 waves-light" type="submit"
-            mdbWavesEffect>Search</button>
-        </div>
-      </form>
-  
-      <ul class="navbar-nav nav-flex-icons">
+      <ul class="navbar-nav nav-flex-icons" >
         <li class="nav-item">
             <a class="nav-link">
               <div class="btn-group" mdbDropdown>
@@ -31,7 +22,11 @@
                 <div class="dropdown-menu dropdown-menu-right dropdown-primary">
                   <a class="dropdown-item" routerLink="/profile">Profile</a>
                   <a class="dropdown-item" routerLink="/status">Job Status</a>
-                  <a class="dropdown-item" routerLink="/favourite">Favourite</a>
+                  <a class="dropdown-item" routerLink="/favourite">Saved Record</a>
+                  <a class="dropdown-item" routerLink="/notification">
+                    Inbox
+                    <span class="badge bg-danger ms-2">{{this.length}}</span>
+                  </a>
                   <div class="divider dropdown-divider"></div>
                   <a class="dropdown-item" (click)="logout()">Logout</a>
                 </div>

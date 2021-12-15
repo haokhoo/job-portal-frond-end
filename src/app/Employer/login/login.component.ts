@@ -62,8 +62,17 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.eLogin(this.logindetails).subscribe(
       () => {
-        this.auth.showSuccess("Login Successful");
-        this.router.navigateByUrl('/employer')
+        this.auth.getCompany().subscribe(
+          company => {
+            if(company==undefined){
+              this.router.navigateByUrl('/employer/panel/details')
+              this.auth.showSuccess("Login Successful, Please fill in company information before you post a job.");
+            }else{
+              this.auth.showSuccess("Login Successful");
+              this.router.navigateByUrl('/employer/dashboard')
+            }
+          }
+        )
       },
       error => {
         if (error.error.error) {

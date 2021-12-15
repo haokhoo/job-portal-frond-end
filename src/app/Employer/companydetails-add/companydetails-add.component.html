@@ -134,10 +134,26 @@
                 </mdb-success>
             </div>
 
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button *ngIf="!getCompany" mdbBtn color="unique" class="waves-light" mdbWavesEffect type="submit"
+                [disabled]="!validateCompany.valid">Add
+                <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+            </button>
+
+            <button *ngIf="getCompany" mdbBtn color="unique" class="waves-light" mdbWavesEffect
+                [disabled]="!validateCompany.valid">Update
+                <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
+            </button>
+        </div>
+    </form>
+
+    <form #f="ngForm" (ngSubmit)="submit(f)" [formGroup]="validateLogo" novalidate>
+        <div class="modal-body mx-3">
             <div class="md-form">
                 <mdb-icon far icon="image" class="prefix grey-text"></mdb-icon>
                 <input type="file" id="form51" class="form-control" mdbInput mdbValidate name="logo"
-                    [formControl]="logo" accept="image/x-png,image/jpeg,image/jpg" [(ngModel)]="company.logo"
+                    [formControl]="logo" accept="image/x-png,image/jpeg,image/jpg" [(ngModel)]="getlogo.logo"
                     #fileupload (change)="fileEvent($event);">
                 <mdb-error *ngIf="logo.invalid && (logo.dirty || logo.touched)">
                     Image invalid
@@ -154,12 +170,12 @@
                 <mdb-icon fas icon="arrow-circle-left" class="ml-1"></mdb-icon>
             </button>
             <button *ngIf="!getCompany" mdbBtn color="unique" class="waves-light" mdbWavesEffect type="submit"
-                [disabled]="!validateCompany.valid">Add
+                [disabled]="!validateLogo.valid">Add
                 <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
             </button>
 
             <button *ngIf="getCompany" mdbBtn color="unique" class="waves-light" mdbWavesEffect
-                [disabled]="!validateCompany.valid">Update
+                [disabled]="!validateLogo.valid">Update
                 <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon>
             </button>
         </div>

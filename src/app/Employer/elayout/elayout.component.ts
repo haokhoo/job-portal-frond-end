@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout'
-import { AuthenticationService, User } from 'src/app/authentication.service';
+import { AuthenticationService, Logo, User } from 'src/app/authentication.service';
 
 @Component({
   selector: 'app-elayout',
@@ -14,8 +14,10 @@ export class ElayoutComponent implements OnInit {
   user: User = {
     name: "",
     email: "",
-    role: "",
+    role_default: "",
   }
+
+  logo: Logo[]
 
   constructor(private observer: BreakpointObserver, public auth: AuthenticationService) { }
 
@@ -35,6 +37,12 @@ export class ElayoutComponent implements OnInit {
     this.auth.getUser().subscribe(
       user => {
         this.user = user.user
+      }
+    )
+
+    this.auth.getLogo().subscribe(
+      logo => {
+        this.logo = logo.logo
       }
     )
   }

@@ -40,6 +40,7 @@ export class CompanydetailsComponent implements OnInit {
         }
       }
     )
+    
   }
 
   toAddPage(){

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AuthenticationService, TokenPayload, } from 'src/app/authentication.service';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +24,7 @@ export class HeaderComponent implements OnInit {
     password: ""
   }
 
-  constructor(public auth: AuthenticationService) {
+  constructor(public auth: AuthenticationService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -62,7 +63,17 @@ export class HeaderComponent implements OnInit {
   login() {
     this.auth.login(this.logindetails).subscribe(
       () => {
-        this.auth.showSuccess("Login Successful");
+        this.auth.getProfile().subscribe(
+          profile => {
+            if(profile[0]==undefined){
+              this.router.navigateByUrl('/profile')
+              this.auth.showSuccess("Login Successful, Please fill in your profile information before you apply a job.");
+            }else{
+              this.auth.showSuccess("Login Successful");
+            }
+          }
+        )
+
       },
       error => {
         if (error.error.error) {

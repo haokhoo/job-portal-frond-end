@@ -25,7 +25,7 @@ export interface TokenPayload {
 export interface User {
     name: string
     email: string
-    role: string
+    role_default: string
 }
 
 export interface Profile {
@@ -86,6 +86,10 @@ export interface Company {
     overview: string
     logo: string
     id: any
+}
+
+export interface Logo {
+    logo: string
 }
 
 export interface eJob {
@@ -170,6 +174,15 @@ export interface Answer_Jobs {
     answer: string
     jsk_id: string
     question_id: string
+    id: string
+}
+
+export interface Notification {
+    title: string
+    desc: string
+    shorttext: string
+    status: string
+    updated_at: string
     id: string
 }
 
@@ -520,6 +533,13 @@ export class AuthenticationService {
         })
     }
 
+    public getNewQuestion(id: String): Observable<any> {
+        return this.http.get<Company>(`/api/question-new/${id}`, {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${this.getToken()}` }
+        })
+    }
+
     public addQuestion(id: string, q: Question): Observable<any> {
         return this.http.post(`/api/question-company/${id}`, q, {
             withCredentials: true,
@@ -555,6 +575,13 @@ export class AuthenticationService {
         })
     }
 
+    public getNewQuestionJob(id: String): Observable<any> {
+        return this.http.get<Question_Jobs>(`/api/question-news/${id}`, {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${this.getToken()}` }
+        })
+    }
+
     public addQuestionJob(id: string, q: Question_Jobs): Observable<any> {
         return this.http.post(`/api/question-jobs/${id}`, q, {
             withCredentials: true,
@@ -581,6 +608,38 @@ export class AuthenticationService {
             withCredentials: true,
             headers: { Authorization: `Bearer ${this.getToken()}` }
         })
+    }
+
+    public getunread(id: String): Observable<any> {
+        return this.http.get(`/api/unread/${id}`, {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${this.getToken()}` }
+        })
+    }
+
+    public getread(id: String): Observable<any> {
+        return this.http.get(`/api/read/${id}`, {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${this.getToken()}` }
+        })
+    }
+
+    public getOneNotice(id: String): Observable<any> {
+        return this.http.get(`/api/getOne/${id}`, {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${this.getToken()}` }
+        })
+    }
+
+    public getSearchJobName(name: String) {
+        const response = new Promise(resolve =>{
+            this.http.get(`/api/search/search_job?search_job=${name}`).subscribe(data => {
+                resolve(data);
+            }, err => {
+                console.log(err);
+            });
+        });
+        return response;
     }
 
     //Employer----------------------------------------------------------------------------------------------
@@ -619,6 +678,20 @@ export class AuthenticationService {
 
     public getCompany(): Observable<any> {
         return this.http.get(`/api/companies`, {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${this.getToken()}` }
+        })
+    }
+
+    public getLogo(): Observable<any> {
+        return this.http.get(`/api/logo`, {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${this.getToken()}` }
+        })
+    }
+
+    public addLogo(): Observable<any> {
+        return this.http.get(`/api/logo`, {
             withCredentials: true,
             headers: { Authorization: `Bearer ${this.getToken()}` }
         })
@@ -675,6 +748,13 @@ export class AuthenticationService {
         })
     }
 
+    public getApplicantsDashboard(cid: String): Observable<any> {
+        return this.http.get(`/api/applicants-display-dashboard/${cid}`, {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${this.getToken()}` }
+        })
+    }
+
     public getApplicantsApproved(id: String, cid: String): Observable<any> {
         return this.http.get(`/api/applicants-approve/${id}/${cid}`, {
             withCredentials: true,
@@ -710,5 +790,26 @@ export class AuthenticationService {
                 withCredentials: true,
                 headers: { Authorization: `Bearer ${this.getToken()}` }
             })
+    }
+
+    public getProfileEducation(id: String): Observable<any> {
+        return this.http.get(`/api/get-education/${id}`, {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${this.getToken()}` }
+        })
+    }
+
+    public getProfileSkill(id: String): Observable<any> {
+        return this.http.get(`/api/get-skill/${id}`, {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${this.getToken()}` }
+        })
+    }
+
+    public getProfileExp(id: String): Observable<any> {
+        return this.http.get(`/api/get-experience/${id}`, {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${this.getToken()}` }
+        })
     }
 }

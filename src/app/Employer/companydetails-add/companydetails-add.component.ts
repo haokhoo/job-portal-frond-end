@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AuthenticationService, Company } from 'src/app/authentication.service';
+import { AuthenticationService, Company, Logo } from 'src/app/authentication.service';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { FileValidator } from 'src/app/file-input.validator';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 })
 export class CompanydetailsAddComponent implements OnInit {
   validateCompany: FormGroup;
+  validateLogo: FormGroup;
+
   company: Company = {
     company_name: "",
     website: "",
@@ -25,6 +27,10 @@ export class CompanydetailsAddComponent implements OnInit {
     overview: "",
     logo: "",
     id: ""
+  }
+
+  getlogo: Logo = {
+    logo: ""
   }
 
   getCompany: Company
@@ -55,7 +61,10 @@ export class CompanydetailsAddComponent implements OnInit {
       state: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
       postal: new FormControl('', [Validators.minLength(5), Validators.maxLength(5), Validators.required, Validators.pattern("^[0-9]*$")]),
-      overview: new FormControl('', Validators.required),
+      overview: new FormControl('', Validators.required)
+    });
+
+    this.validateLogo = new FormGroup({
       logo: new FormControl('', [FileValidator.validate])
     });
   }
@@ -101,11 +110,11 @@ export class CompanydetailsAddComponent implements OnInit {
   }
 
   get logo() {
-    return this.validateCompany.get('logo');
+    return this.validateLogo.get('logo');
   }
 
   fileEvent(e) {
-    this.company.logo = e.target.files[0];
+    this.getlogo.logo = e.target.files[0];
   }
 
   onFileChange(event) {
@@ -116,7 +125,7 @@ export class CompanydetailsAddComponent implements OnInit {
       reader.readAsDataURL(file);
 
       reader.onload = () => {
-        this.validateCompany.patchValue({
+        this.validateLogo.patchValue({
           file: reader.result
         });
 
@@ -125,7 +134,7 @@ export class CompanydetailsAddComponent implements OnInit {
     }
   }
 
-  onSubmit(f: any) {
+  onSubmit(f:any){
     const myFormData = new FormData();
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
@@ -140,7 +149,6 @@ export class CompanydetailsAddComponent implements OnInit {
     myFormData.append('state', this.company.state);
     myFormData.append('postal', this.company.postal);
     myFormData.append('overview', this.company.overview);
-    myFormData.append('logo', this.company.logo);
     this.http.post('/api/companies', myFormData, {
       headers: {
         Authorization: `Bearer ${this.auth.getToken()}`,
@@ -181,6 +189,26 @@ export class CompanydetailsAddComponent implements OnInit {
           if (error.error.error.overview) {
             this.auth.showError(error.error.error.overview);
           }
+        }
+      });
+  }
+
+  submit(f: any) {
+    const myFormData = new FormData();
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    myFormData.append('logo', this.getlogo.logo);
+    this.http.post('/api/logo', myFormData, {
+      headers: {
+        Authorization: `Bearer ${this.auth.getToken()}`,
+      }
+    }).subscribe(data => {
+      this.auth.showSuccess("Logo upload Successful");
+      this.router.navigateByUrl('employer/panel/details')
+    },
+      error => {
+        if (error.error.error) {
           if (error.error.error.logo) {
             this.auth.showError(error.error.error.logo);
           }

@@ -24,7 +24,7 @@ export class QnaJobComponent implements OnInit {
 
   ngOnInit(): void {
     this.questionForm()
-    this.auth.getQuestionJob(this.route.snapshot.params.id).subscribe(
+    this.auth.getNewQuestionJob(this.route.snapshot.params.id).subscribe(
       question => {
         this.getQuestion = question
       }

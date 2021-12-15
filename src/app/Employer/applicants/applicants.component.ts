@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService, eJob, apJob, Applicant } from 'src/app/authentication.service';
+import { AuthenticationService, eJob, apJob, Applicant, Education, Skill, Experience } from 'src/app/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -28,6 +28,11 @@ export class ApplicantsComponent implements OnInit {
   }
 
   applicants: Applicant
+
+  education: Education
+  skill: Skill
+  exp: Experience
+
   action: Applicant = {
     job_epy_job: '',
     company_id: '',
@@ -50,6 +55,8 @@ export class ApplicantsComponent implements OnInit {
             this.applicants = applicants
           }
         )
+
+        
       }
     )
   }
@@ -61,7 +68,7 @@ export class ApplicantsComponent implements OnInit {
   approveApplicant(id: String){
     this.auth.approveApplicant(id,this.action).subscribe(
       () => {
-        this.auth.showSuccess("Hired Successful.");
+        this.auth.showSuccess("Shortlisted Successful.");
         window.location.reload()
       },
       () => {
@@ -78,6 +85,26 @@ export class ApplicantsComponent implements OnInit {
       () => {
         this.auth.showError("Something Error!")
       });
+  }
+
+  get(id:any){
+    this.auth.getProfileEducation(id).subscribe(
+      education => {
+        this.education = education
+      }
+    )
+
+    this.auth.getProfileSkill(id).subscribe(
+      skill => {
+        this.skill = skill
+      }
+    )
+
+    this.auth.getProfileExp(id).subscribe(
+      exp => {
+        this.exp = exp
+      }
+    )
   }
 
 }

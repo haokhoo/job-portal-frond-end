@@ -68,6 +68,8 @@ import { QnADialogComponent } from './Employer/qn-a-dialog/qn-a-dialog.component
 import { QuestionJobComponent } from './Jobseeker/question-job/question-job.component';
 import { QnaJobComponent } from './Employer/qna-job/qna-job.component';
 import { QnaJobDialogComponent } from './Employer/qna-job-dialog/qna-job-dialog.component';
+import { NotificationComponent } from './Jobseeker/notification/notification.component';
+import { DashboardComponent } from './Employer/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -85,19 +87,21 @@ const routes: Routes = [
       { path: 'company', component: AllcompanyComponent },
       { path: 'company/:id', component: AllcompanyDetailsComponent },
       { path: 'job/:id', component: JobdetailsComponent },
+      { path: 'notification', component: NotificationComponent, canActivate: [AuthGuardService] },
     ]
   },
   {
     path: 'employer',
     component: ElayoutComponent, canActivate: [AuthGuardService],
     children: [
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
       { path: 'panel/post', component: PostajobComponent, canActivate: [AuthGuardService] },
       { path: 'panel/details', component: CompanydetailsComponent, canActivate: [AuthGuardService] },
       { path: 'panel/details/actions', component: CompanydetailsAddComponent, canActivate: [AuthGuardService] },
       { path: 'panel/manage', component: JobmanageComponent, canActivate: [AuthGuardService] },
       { path: 'panel/manage/:id', component: ApplicantsComponent, canActivate: [AuthGuardService] },
       { path: 'panel/applicant', component: ApplicantsStatusComponent, canActivate: [AuthGuardService] },
-      { path: 'panel/applicant-hired/:id', component: ApplicantsDisplayComponent, canActivate: [AuthGuardService] },
+      { path: 'panel/applicant-shortlisted/:id', component: ApplicantsDisplayComponent, canActivate: [AuthGuardService] },
       { path: 'panel/applicant-rejected/:id', component: ApplicantsDisplayRejectComponent, canActivate: [AuthGuardService] },
       { path: 'panel/qna', component: QnAComponent, canActivate: [AuthGuardService] },
       { path: 'panel/qna/:id', component: QnADialogComponent, canActivate: [AuthGuardService] },
@@ -147,7 +151,9 @@ const routes: Routes = [
     QnADialogComponent,
     QuestionJobComponent,
     QnaJobComponent,
-    QnaJobDialogComponent
+    QnaJobDialogComponent,
+    NotificationComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

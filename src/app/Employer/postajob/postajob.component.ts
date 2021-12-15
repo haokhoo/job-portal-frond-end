@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService, eJob, Company } from 'src/app/authentication.service';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-postajob',
@@ -38,7 +39,7 @@ export class PostajobComponent implements OnInit {
     id: ""
   }
 
-  constructor(public auth: AuthenticationService) { }
+  constructor(public auth: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
     this.jobForm()
@@ -77,31 +78,37 @@ export class PostajobComponent implements OnInit {
   addJob() {
     this.auth.getCompany().subscribe(
       company => {
-        this.getCompany.id = company.id
-        this.auth.addEJob(this.getCompany.id, this.validateJob.value).subscribe(
-          () => {
-            this.auth.showSuccess("Job created successfully, please wait for admin approval.");
-            window.location.reload()
-          },
-          error => {
-            if (error.error.error) {
-              if (error.error.error.title) {
-                this.auth.showError(error.error.error.title);
+        if (company == undefined) {
+          this.auth.showError("Please fill in company information before you post a job!")
+          this.router.navigateByUrl('/employer/panel/details')
+        } else {
+          this.getCompany.id = company.id
+          this.auth.addEJob(this.getCompany.id, this.validateJob.value).subscribe(
+            () => {
+              this.auth.showSuccess("Job created successfully, please wait for admin approval.");
+              window.location.reload()
+            },
+            error => {
+              if (error.error.error) {
+                if (error.error.error.title) {
+                  this.auth.showError(error.error.error.title);
+                }
+                if (error.error.error.desc) {
+                  this.auth.showError(error.error.error.desc);
+                }
+                if (error.error.error.budget) {
+                  this.auth.showError(error.error.error.budget);
+                }
+                if (error.error.error.category) {
+                  this.auth.showError(error.error.error.category);
+                }
+                if (error.error.error.position_type) {
+                  this.auth.showError(error.error.error.position_type);
+                }
               }
-              if (error.error.error.desc) {
-                this.auth.showError(error.error.error.desc);
-              }
-              if (error.error.error.budget) {
-                this.auth.showError(error.error.error.budget);
-              }
-              if (error.error.error.category) {
-                this.auth.showError(error.error.error.category);
-              }
-              if (error.error.error.position_type) {
-                this.auth.showError(error.error.error.position_type);
-              }
-            }
-          });
+            });
+        }
+
       }
     )
   }

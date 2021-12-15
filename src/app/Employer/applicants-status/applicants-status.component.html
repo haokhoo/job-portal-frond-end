@@ -2,9 +2,9 @@
     <div class="container">
         <div class="row pt-3">
             <div class="col-md-12 p-1">
-                <h1>Applicants Status</h1>
+                <h1>Candidates Status</h1>
                 <mat-tab-group mat-align-tabs="center">
-                    <mat-tab label="Hired Applicants">
+                    <mat-tab label="Shortlisted Applicants">
                         <table mdbTable bordered="true" class="table table-responsive-md" style="width: 100%;">
                             <thead>
                                 <tr>
@@ -15,7 +15,7 @@
                             <tbody *ngFor="let e of approveJob;index as i">
                                 <tr>
                                     <td class="pointer"
-                                        routerLink="/employer/panel/applicant-hired/{{approveJob[i]?.id}}">
+                                        routerLink="/employer/panel/applicant-shortlisted/{{approveJob[i]?.id}}">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h3 class="mb-1"><strong>{{approveJob[i]?.title}}</strong></h3>
                                             <small>{{(approveJob[i]?.updated_at.length>10)? (approveJob[i]?.updated_at |
@@ -26,7 +26,7 @@
                                         <p class="mb-1">{{ (approveJob[i]?.desc.length>150)? (approveJob[i]?.desc |
                                             slice:0:150)+'......':(approveJob[i]?.desc) }}</p>
                                     </td>
-                                    <td>Hired</td>
+                                    <td>Shortlisted</td>
                                 </tr>
                             </tbody>
                         </table>

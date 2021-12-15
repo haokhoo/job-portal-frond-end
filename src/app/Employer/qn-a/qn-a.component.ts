@@ -27,7 +27,7 @@ export class QnAComponent implements OnInit {
     this.auth.getCompany().subscribe(
       company => {
         this.company_id = company.id
-        this.auth.getQuestion(this.company_id).subscribe(
+        this.auth.getNewQuestion(this.company_id).subscribe(
           question => {
             this.getQuestion = question
           }

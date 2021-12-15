@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService, eJob, apJob, Applicant } from 'src/app/authentication.service';
+import { AuthenticationService, eJob, apJob, Applicant, Education, Skill, Experience } from 'src/app/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -21,13 +21,17 @@ export class ApplicantsDisplayComponent implements OnInit {
     state: '',
     updated_at: ''
   }
+  applicants: Applicant
+
+  education: Education
+  skill: Skill
+  exp: Experience
 
   apjob: apJob = {
     id: '',
     company_id: ''
   }
 
-  applicants: Applicant
 
   constructor(public auth: AuthenticationService, private route: ActivatedRoute, private router: Router) { }
 
@@ -51,4 +55,23 @@ export class ApplicantsDisplayComponent implements OnInit {
     this.router.navigateByUrl('/employer/panel/applicant')
   }
 
+  get(id:any){
+    this.auth.getProfileEducation(id).subscribe(
+      education => {
+        this.education = education
+      }
+    )
+
+    this.auth.getProfileSkill(id).subscribe(
+      skill => {
+        this.skill = skill
+      }
+    )
+
+    this.auth.getProfileExp(id).subscribe(
+      exp => {
+        this.exp = exp
+      }
+    )
+  }
 }

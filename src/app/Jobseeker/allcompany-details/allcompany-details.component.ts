@@ -54,7 +54,7 @@ export class AllcompanyDetailsComponent implements OnInit {
   addfcompany(){
     this.auth.addfcompany(this.company.id, this.fcompany).subscribe(
       () => {
-        this.auth.showSuccess("Add favaorite Successully!")
+        this.auth.showSuccess("Save this company Successully!")
       },
       () => {
         this.auth.showError("Something Error!")

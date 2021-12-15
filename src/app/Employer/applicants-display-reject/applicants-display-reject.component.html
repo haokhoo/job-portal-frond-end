@@ -1,19 +1,101 @@
 <main>
     <div class="container">
         <div class="row pt-2">
-            <div class="col-md-2" *ngFor="let a of applicants;index as i">
+            <div class="col-md-3" *ngFor="let a of applicants;index as i">
                 <mdb-card>
                     <mdb-card-body>
                         <mdb-card-title>
                             <h3>Applicant {{i+1}}</h3>
                         </mdb-card-title>
-                        <a href="http://localhost:8000/{{applicants[i]?.resume}}" target="_blank">
-                            <mdb-card-img src="http://localhost:8000/{{applicants[i]?.resume}}"
-                                alt="Card image cap">
-                            </mdb-card-img>
-                        </a>
+                        <mdb-card-text>
+                            <div class="text-center">
+                                <p>{{applicants[i]?.fullname}}</p>
+                                <p>{{applicants[i]?.city}}, {{applicants[i]?.state}}</p>
+                                <p>{{applicants[i]?.course}}</p>
+
+                                <div class="text-center pt-2">
+                                    <div class="btn-group" mdbDropdown>
+                                        <a mdbDropdownToggle type="button" mdbBtn color="danger"
+                                            class="dropdown-toggle waves-light btn-sm" mdbWavesEffect>
+                                            Actions
+                                        </a>
+
+                                        <div class="dropdown-menu dropdown-primary">
+
+                                            <a class="dropdown-item" (click)="basicModal.show()"
+                                                (click)="get(applicants[i]?.user_id)">View Profile</a>
+                                            <a class="dropdown-item"
+                                                href="http://localhost:8000/{{applicants[i]?.resume}}"
+                                                target="_blank">View Resume</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mdb-card-text>
                     </mdb-card-body>
                 </mdb-card>
+
+                <!-- Modal -->
+                <div mdbModal #basicModal="mdbModal" class="modal fade right" tabindex="-1" role="dialog"
+                    aria-labelledby="myBasicModalLabel" aria-hidden="true"
+                    [config]="{backdrop: false, ignoreBackdropClick: true}">
+                    <div class="modal-dialog modal-full-height modal-right modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close pull-right" aria-label="Close"
+                                    (click)="basicModal.hide()">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <h4 class="modal-title w-100" id="myModalLabel">Applicant Detail</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{applicants[i]?.fullname}}</p>
+                                <p><b>Address: </b>{{applicants[i]?.address1}}, {{applicants[i]?.address2}},
+                                    {{applicants[i]?.postal}} {{applicants[i]?.state}}, {{applicants[i]?.city}}</p>
+                                <p><b>Date Applied: </b>{{applicants[i]?.created_at | slice:0:10}}</p>
+
+                                <mat-divider></mat-divider>
+
+                                <p><b>About Me</b></p>
+                                <p style="white-space: pre-wrap">{{applicants[i]?.summary}}</p>
+
+                                <mat-divider></mat-divider>
+
+                                <p><b>Educations</b></p>
+                                <div class="education" *ngFor="let e of education;index as i">
+                                    <p>E {{i+1}}</p>
+                                    <p>School: {{education[i]?.school}}</p>
+                                    <p>Course: {{education[i]?.course}}</p>
+                                    <p>Result: {{education[i]?.result}}</p>
+                                    <p>Date: {{education[i]?.start_date}} - {{education[i]?.end_date}}</p>
+                                </div>
+
+                                <mat-divider></mat-divider>
+
+                                <p><b>Experiences</b></p>
+                                <div class="experience" *ngFor="let e of exp;index as i">
+                                    <p>Exp {{i+1}}</p>
+                                    <p>Job Title: {{exp[i]?.job_title}}</p>
+                                    <p>Company: {{exp[i]?.employer}}</p>
+                                    <p>Date: {{education[i]?.start_date}} - {{education[i]?.end_date}}</p>
+                                </div>
+
+                                <mat-divider></mat-divider>
+
+                                <p><b>Skills (Best = 9, Worst = 0)</b></p>
+                                <div class="skill" *ngFor="let s of skill;index as i">
+                                    <p>{{skill[i]?.name}} - {{skill[i]?.rating}}</p>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                                    (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 

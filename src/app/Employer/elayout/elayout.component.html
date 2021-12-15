@@ -14,13 +14,14 @@
 
     <mat-sidenav-container>
         <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-            <img class="avatar mat-elevation-z8" src="../../../assets/avatar.png" />
+            <img class="avatar mat-elevation-z8" *ngIf="!this.logo" src="../../../assets/avatar.png" />
+            <img class="avatar mat-elevation-z8" *ngIf="this.logo" src="http://localhost:8000/{{this.logo}}" />
 
             <h4 class="name">{{user?.name}}</h4>
             <p class="designation">{{user?.email}}</p>
 
             <mat-divider></mat-divider>
-            <button mat-button class="menu-button" routerLink="/employer">
+            <button mat-button class="menu-button" routerLink="dashboard">
                 <mat-icon>dashboard</mat-icon>
                 <span>Dashboard</span>
             </button>
@@ -38,7 +39,7 @@
             </button>
             <button mat-button class="menu-button" routerLink="panel/applicant">
                 <mat-icon>people</mat-icon>
-                <span>Applicants</span>
+                <span>Candidates</span>
             </button>
             <button mat-button class="menu-button" routerLink="panel/qna">
                 <mat-icon>question_answer</mat-icon>

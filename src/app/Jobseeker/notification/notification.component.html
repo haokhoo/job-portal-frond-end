@@ -1,0 +1,75 @@
+<main>
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-md-12 p-1">
+                <h1>Inbox</h1>
+                <mat-tab-group mat-align-tabs="center">
+                    <mat-tab label="Unread Messages">
+                        <table mdbTable bordered="true" class="table table-responsive-md" style="width: 100%;">
+                            <tbody *ngFor="let e of unread;index as i">
+                                <tr>
+                                    <td class="pointer" (click)="noticeframe.show()" (click)="get(unread[i]?.id)">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h3 class="mb-1"><strong>{{unread[i]?.title}} - {{unread[i]?.updated_at | slice:0:10}}</strong></h3>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </mat-tab>
+                    <mat-tab label="Read Messages">
+                        <table mdbTable bordered="true" class="table table-responsive-md" style="width: 100%;">
+                            <tbody *ngFor="let e of read;index as i">
+                                <tr>
+                                    <td class="pointer" (click)="noticeframe.show()" (click)="get(read[i]?.id)">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h3 class="mb-1">{{read[i]?.title}} - {{read[i]?.updated_at | slice:0:10}}</h3>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
+
+        <div mdbModal #noticeframe="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+            aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="noticeframe.hide()" (click)="close()">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title w-100" id="myModalLabel">{{this.updated_at | slice:0:10}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p style="white-space: pre-wrap">{{this.desc}}</p>
+
+                        <table mdbTable bordered="true" class="table table-responsive-md" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th><strong>Company Name</strong></th>
+                                    <th><strong>Job Title</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{this.name}}</td>
+                                    <td>{{this.job}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <p style="white-space: pre-wrap">{{this.shorttext}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                            (click)="noticeframe.hide()" (click)="close()" mdbWavesEffect >Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

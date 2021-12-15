@@ -69,14 +69,15 @@ export class JobdetailsComponent implements OnInit {
         this.auth.showSuccess("Apply Successfull, Please wait for the response.")
       },
       () => {
-        this.auth.showError("Please login before you apply a job!")
+        this.auth.showError("Please fill in your profile information before your apply the job!")
       });
+      
   }
 
   addfejob(){
     this.auth.addfejob(this.apjob.id, this.fejob).subscribe(
       () => {
-        this.auth.showSuccess("Add favaorite Successully!")
+        this.auth.showSuccess("Save this job Successully!")
       },
       () => {
         this.auth.showError("Something Error!")

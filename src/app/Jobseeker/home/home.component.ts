@@ -39,7 +39,8 @@ export class HomeComponent implements OnInit {
   company_name: string
   state: string
   updated_at: string
-
+  
+  data:any
 
   constructor(public auth: AuthenticationService) { }
 
@@ -74,7 +75,7 @@ export class HomeComponent implements OnInit {
         this.auth.showSuccess("Apply Successfull, Please wait for the response.")
       },
       () => {
-        this.auth.showError("Please login before you apply a job!")
+        this.auth.showError("Please fill in your profile information before your apply the job!")
       });
   }
 
@@ -87,6 +88,21 @@ export class HomeComponent implements OnInit {
         this.auth.showError("Something Error!")
       }
     )
+  }
+
+  getJobSearch(name: any) {
+    this.hide = false
+    const keyword = name.target.value;
+    const search = this.auth.getSearchJobName(keyword).then(
+      response => {
+        this.data = response;
+      }
+    )
+
+    if(keyword == ""){
+      this.hide = false
+      window.location.reload()
+    }
   }
 
 }
