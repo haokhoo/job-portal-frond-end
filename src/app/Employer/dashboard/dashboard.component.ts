@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   company_id: any
   ngOnInit(): void {
-    this.auth.getEJob().subscribe(
+    this.auth.getJobsCount().subscribe(
       ejob => {
         this.jlength = ejob.length
       }

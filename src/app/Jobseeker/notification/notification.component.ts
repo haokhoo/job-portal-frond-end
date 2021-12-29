@@ -16,13 +16,13 @@ export class NotificationComponent implements OnInit {
     shorttext: '',
     status: '',
     id: '',
-    updated_at: ''
+    created_at: ''
   }
 
   title: string
   desc: string
   shorttext: string
-  updated_at: string
+  created_at: string
   name: string
   job: string
 
@@ -52,7 +52,7 @@ export class NotificationComponent implements OnInit {
         this.title = notice[0].title
         this.desc = notice[0].desc
         this.shorttext = notice[0].shorttext
-        this.updated_at = notice[0].updated_at
+        this.created_at = notice[0].created_at
         this.name = notice[0].company_name
         this.job = notice[0].job_title
       }

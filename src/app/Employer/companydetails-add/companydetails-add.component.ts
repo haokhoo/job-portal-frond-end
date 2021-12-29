@@ -134,7 +134,7 @@ export class CompanydetailsAddComponent implements OnInit {
     }
   }
 
-  onSubmit(f:any){
+  onSubmit(f: any) {
     const myFormData = new FormData();
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
@@ -193,6 +193,49 @@ export class CompanydetailsAddComponent implements OnInit {
       });
   }
 
+  onUpdate() {
+    this.auth.updateCompany(this.company).subscribe(
+      () => {
+        this.auth.showSuccess("Company upload Successful");
+        this.router.navigateByUrl('employer/panel/details')
+      },
+      error => {
+        if (error.error.error) {
+          if (error.error.error.company_name) {
+            this.auth.showError(error.error.error.company_name);
+          }
+          if (error.error.error.website) {
+            this.auth.showError(error.error.error.website);
+          }
+          if (error.error.error.phone) {
+            this.auth.showError(error.error.error.phone);
+          }
+          if (error.error.error.email) {
+            this.auth.showError(error.error.error.email);
+          }
+          if (error.error.error.address1) {
+            this.auth.showError(error.error.error.address1);
+          }
+          if (error.error.error.address2) {
+            this.auth.showError(error.error.error.address2);
+          }
+          if (error.error.error.city) {
+            this.auth.showError(error.error.error.city);
+          }
+          if (error.error.error.state) {
+            this.auth.showError(error.error.error.state);
+          }
+          if (error.error.error.postal) {
+            this.auth.showError(error.error.error.postal);
+          }
+          if (error.error.error.overview) {
+            this.auth.showError(error.error.error.overview);
+          }
+        }
+      });
+  }
+
+
   submit(f: any) {
     const myFormData = new FormData();
     const headers = new HttpHeaders();
@@ -204,7 +247,7 @@ export class CompanydetailsAddComponent implements OnInit {
         Authorization: `Bearer ${this.auth.getToken()}`,
       }
     }).subscribe(data => {
-      this.auth.showSuccess("Logo upload Successful");
+      this.auth.showSuccess("Logo upload Successful.");
       this.router.navigateByUrl('employer/panel/details')
     },
       error => {

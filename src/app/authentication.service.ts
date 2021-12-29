@@ -182,7 +182,7 @@ export interface Notification {
     desc: string
     shorttext: string
     status: string
-    updated_at: string
+    created_at: string
     id: string
 }
 
@@ -275,6 +275,13 @@ export class AuthenticationService {
 
     public getCompanyJobs(id: String): Observable<any> {
         return this.http.get<eJob>(`/api/company-jobs/${id}`, {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${this.getToken()}`, }
+        })
+    }
+
+    public getJobsCount(): Observable<any> {
+        return this.http.get(`/api/jobs-count`, {
             withCredentials: true,
             headers: { Authorization: `Bearer ${this.getToken()}`, }
         })
@@ -681,6 +688,14 @@ export class AuthenticationService {
             withCredentials: true,
             headers: { Authorization: `Bearer ${this.getToken()}` }
         })
+    }
+
+    public updateCompany(c: Company): Observable<Company> {
+        return this.http
+            .put<Company>(`/api/companies`, c, {
+                withCredentials: true,
+                headers: { Authorization: `Bearer ${this.getToken()}` }
+            })
     }
 
     public getLogo(): Observable<any> {

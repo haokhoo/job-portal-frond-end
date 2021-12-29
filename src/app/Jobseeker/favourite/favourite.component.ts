@@ -29,7 +29,7 @@ export class FavouriteComponent implements OnInit {
   removefCompany(id: String) {
     this.auth.deletefcompany(id).subscribe(
       () => {
-        this.auth.showSuccess("Favourite remove Successful!");
+        this.auth.showSuccess("Company remove Successful!");
         window.location.reload()
       },
       () => {
@@ -40,7 +40,7 @@ export class FavouriteComponent implements OnInit {
   removefejob(id: String) {
     this.auth.deletefejob(id).subscribe(
       () => {
-        this.auth.showSuccess("Favourite remove Successful!");
+        this.auth.showSuccess("Job remove Successful!");
         window.location.reload()
       },
       () => {

@@ -10,7 +10,7 @@
                                 <tr>
                                     <td class="pointer" (click)="noticeframe.show()" (click)="get(unread[i]?.id)">
                                         <div class="d-flex w-100 justify-content-between">
-                                            <h3 class="mb-1"><strong>{{unread[i]?.title}} - {{unread[i]?.updated_at | slice:0:10}}</strong></h3>
+                                            <h3 class="mb-1"><strong>{{unread[i]?.title}} - {{unread[i]?.created_at | slice:0:10}}</strong></h3>
                                         </div>
                                     </td>
                                 </tr>
@@ -23,7 +23,7 @@
                                 <tr>
                                     <td class="pointer" (click)="noticeframe.show()" (click)="get(read[i]?.id)">
                                         <div class="d-flex w-100 justify-content-between">
-                                            <h3 class="mb-1">{{read[i]?.title}} - {{read[i]?.updated_at | slice:0:10}}</h3>
+                                            <h3 class="mb-1">{{read[i]?.title}} - {{read[i]?.created_at | slice:0:10}}</h3>
                                         </div>
                                     </td>
                                 </tr>
@@ -42,7 +42,7 @@
                         <button type="button" class="close pull-right" aria-label="Close" (click)="noticeframe.hide()" (click)="close()">
                             <span aria-hidden="true">×</span>
                         </button>
-                        <h4 class="modal-title w-100" id="myModalLabel">{{this.updated_at | slice:0:10}}</h4>
+                        <h4 class="modal-title w-100" id="myModalLabel">{{this.created_at | slice:0:10}}</h4>
                     </div>
                     <div class="modal-body">
                         <p style="white-space: pre-wrap">{{this.desc}}</p>

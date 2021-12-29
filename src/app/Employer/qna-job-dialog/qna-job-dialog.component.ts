@@ -60,7 +60,7 @@ export class QnaJobDialogComponent implements OnInit {
     this.auth.addAnswerJob(this.route.snapshot.params.id,this.a).subscribe(
       () => {
         this.auth.showSuccess("Answer sent Successful");
-        // this.back()
+        this.back()
       },
       error => {
         if (error.error.error) {
