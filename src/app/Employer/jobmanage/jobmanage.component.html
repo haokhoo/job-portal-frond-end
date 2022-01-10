@@ -9,7 +9,6 @@
                             <thead>
                                 <tr>
                                     <th><strong>Activated Jobs</strong></th>
-                                    <th><strong>Status</strong></th>
                                     <th><strong>Actions</strong></th>
                                 </tr>
                             </thead>
@@ -27,10 +26,9 @@
                                         <p class="mb-1">{{ (approveJob[i]?.desc.length>150)? (approveJob[i]?.desc |
                                             slice:0:150)+'......':(approveJob[i]?.desc) }}</p>
                                     </td>
-                                    <td>Active</td>
                                     <td class="center">
                                         <mdb-icon far icon="trash-alt" class="pointer"
-                                            (click)="removeEJob(pendingJob[i].id)">
+                                            (click)="removeEJob(approveJob[i]?.id)">
                                         </mdb-icon>
                                     </td>
                                 </tr>
@@ -42,7 +40,6 @@
                             <thead>
                                 <tr>
                                     <th><strong>Pending Jobs</strong></th>
-                                    <th><strong>Status</strong></th>
                                     <th><strong>Action</strong></th>
                                 </tr>
                             </thead>
@@ -60,7 +57,6 @@
                                         <p class="mb-1">{{ (pendingJob[i]?.desc.length>150)? (pendingJob[i]?.desc |
                                             slice:0:150)+'......':(pendingJob[i]?.desc) }}</p>
                                     </td>
-                                    <td>Pending</td>
                                     <td class="center">
                                         <mdb-icon far icon="trash-alt" class="pointer"
                                             (click)="removeEJob(pendingJob[i].id)">
@@ -75,7 +71,6 @@
                             <thead>
                                 <tr>
                                     <th><strong>History Jobs</strong></th>
-                                    <th><strong>Status</strong></th>
                                     <th><strong>Actions</strong></th>
                                 </tr>
                             </thead>
@@ -93,7 +88,6 @@
                                         <p class="mb-1">{{ (removeJob[i]?.desc.length>150)? (removeJob[i]?.desc |
                                             slice:0:150)+'......':(removeJob[i]?.desc) }}</p>
                                     </td>
-                                    <td>Expired</td>
                                     <td class="center">
                                         <mdb-icon fas icon="redo" class="pointer"
                                             (click)="recoverEJob(removeJob[i].id)">

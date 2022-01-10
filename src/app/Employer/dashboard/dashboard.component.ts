@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
           }
         )
 
-        this.auth.getQuestion(this.company_id).subscribe(
+        this.auth.getNewQuestion(this.company_id).subscribe(
           question => {
             this.qlength = question.length
           }

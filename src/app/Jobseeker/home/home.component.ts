@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit {
   addfejob(){
     this.auth.addfejob(this.id, this.fejob).subscribe(
       () => {
-        this.auth.showSuccess("Add favaorite Successully!")
+        this.auth.showSuccess("Save Job Successully!")
       },
       () => {
         this.auth.showError("Something Error!")
